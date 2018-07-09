@@ -14,6 +14,8 @@ ssh $SERVER "./run.wlp4i.sh" > $WLP4I
 
 $1 < $WLP4I > $MIPS
 
+[ "$4" == "-i" ] && cat $MIPS
+
 scp $MIPS "$SERVER:~/.run.tmp.asm" > /dev/null
 ssh $SERVER "./run.mips.sh \"$2\" \"$3\""
 
