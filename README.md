@@ -60,10 +60,10 @@ Assuming script is in the same directory as the project, and we don't want to li
 
 ```bash
 # racket
-$ ./run
+$ ./run.sh
 
 # C++
-$ ./run -c "make; ./wlp4gen"
+$ ./run.sh -c "make; ./wlp4gen"
 ```
 
 ### Custom location
@@ -72,10 +72,10 @@ Assuming script is in some other directory than the project, and we don't want t
 
 ```bash
 # racket
-$ ./run -c "racket /home/adi/CS241/assignments/a8/wlp4gen.rkt"
+$ ./run.sh -c "racket /home/adi/CS241/assignments/a8/wlp4gen.rkt"
 
 # C++
-$ ./run -c "cd /home/adi/CS241/assignments/a8/wlp4gen.rkt; make; ./wlp4gen"
+$ ./run.sh -c "cd /home/adi/CS241/assignments/a8/wlp4gen.rkt; make; ./wlp4gen"
 ```
 
 ### Dump generated code for debugging
@@ -84,10 +84,10 @@ Assuming script is in the same directory as the project, and we don't want to li
 
 ```bash
 # racket
-$ ./run -a mips.asm
+$ ./run.sh -a mips.asm
 
 # C++
-$ ./run -c "make; ./wlp4gen" -a mips.asm
+$ ./run.sh -c "make; ./wlp4gen" -a mips.asm
 ```
 
 ### Run some other command for MIPS code
@@ -96,10 +96,10 @@ Assuming script is in the same directory as the project, and we don't want to li
 
 ```bash
 # racket
-$ ./run -m "someOtherCommandInsteadOf_mips.twoints"
+$ ./run.sh -m "someOtherCommandInsteadOf_mips.twoints"
 
 # C++
-$ ./run -c "make; ./wlp4gen" -m "someOtherCommandInsteadOf_mips.twoints"
+$ ./run.sh -c "make; ./wlp4gen" -m "someOtherCommandInsteadOf_mips.twoints"
 ```
 
 ### Linking single or multiple `.merl` files
@@ -112,8 +112,8 @@ Assuming script is in the same directory as the project.
 
 ```bash
 # racket
-$ ./run print.merl alloc.merl something_else.merl
+$ ./run.sh print.merl alloc.merl something_else.merl
 
 # C++
-$ ./run -c "make; ./wlp4gen" print.merl alloc.merl something_else.merl
+$ ./run.sh -c "make; ./wlp4gen" print.merl alloc.merl something_else.merl
 ```

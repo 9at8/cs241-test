@@ -7,6 +7,8 @@ INP=$(mktemp)
 WLP4I=$(mktemp)
 MIPS=$(mktemp)
 
+echo "Enter WLP4 code:"
+
 cat /dev/stdin > $INP
 
 OPTIND=1
@@ -33,14 +35,16 @@ shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift
 
-merls=$(join_by " " $@)
+tmp_join=$(join_by " " $@)
+
+[ tmp_join ] && merls=$tmp_join
 
 scp $INP "${USER}@${SERVER}:~/.run.tmp.wlp4" > /dev/null
-ssh $SERVER "./run.wlp4i.sh" > $WLP4I
+ssh "${USER}@${SERVER}" "./run.wlp4i.sh" > $WLP4I
 
 $cmd < $WLP4I > $assembly_file
 
 scp $assembly_file "${USER}@${SERVER}:~/.run.tmp.asm" > /dev/null
-ssh $SERVER ./run.mips.sh $mips_cmd \"$merls\"
+ssh "${USER}@${SERVER}" ./run.mips.sh $mips_cmd \"$merls\"
 
 rm $INP $WLP4I $MIPS
