@@ -1,11 +1,21 @@
 #!/bin/bash
 
+set -e
+
 USER="YourUsernameHere"
 SERVER="linux.student.cs.uwaterloo.ca"
 
 INP=$(mktemp)
 WLP4I=$(mktemp)
 MIPS=$(mktemp)
+
+function clean_up {    
+    rm $INP $WLP4I $MIPS
+    exit
+}
+
+trap clean_up ERR
+trap clean_up SIGHUP SIGINT SIGTERM
 
 echo "Enter WLP4 code (press C-d when done):"
 
